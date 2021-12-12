@@ -1,0 +1,8 @@
+[requires]
+glfw/3.3.5
+glew/2.1.0
+
+[generators]
+cmake
+cmake_find_package
+cmake_paths
