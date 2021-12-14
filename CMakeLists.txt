@@ -2,10 +2,8 @@ cmake_minimum_required(VERSION 3.20)
 
 project(myopengltest)
 
-include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
+set(CONAN_DISABLE_CHECK_COMPILER True)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
-list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
 
 conan_basic_setup()
 
