@@ -1,6 +1,11 @@
-#version 450 core
-layout (location = 0) in vec4 vPosition;
+#version 330 core
+
+layout(location = 0) in vec2 vertexPosition;
+out vec4 fColor;
 
 void main() {
-     gl_Position = vPosition;
+     fColor = vec4(0.5, 0.4, 0.8, 1.0);
+     gl_Position.xy = vertexPosition;
+     gl_Position.z = 0.0;
+     gl_Position.w = 1.0;
 }

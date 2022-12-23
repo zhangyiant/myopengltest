@@ -27,8 +27,10 @@ void init() {
         { -0.90, 0.90 },
         { 0.85, 0.90 }
     };
-    glCreateBuffers(NumBuffers, Buffers);
-    glNamedBufferStorage(Buffers[ArrayBuffer], sizeof(vertices), vertices, 0);
+
+    glGenBuffers(NumBuffers, Buffers);
+    glBindBuffer(GL_ARRAY_BUFFER, Buffers[ArrayBuffer]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     ShaderInfo shaders[] = {
         { GL_VERTEX_SHADER, "triangles.vert" },
@@ -41,9 +43,9 @@ void init() {
 
     glGenVertexArrays(NumVAOs, VAOs);
     glBindVertexArray(VAOs[Triangles]);
+    glEnableVertexAttribArray(vPosition);
     glBindBuffer(GL_ARRAY_BUFFER, Buffers[ArrayBuffer]);
     glVertexAttribPointer(vPosition, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-    glEnableVertexAttribArray(vPosition);
     return;
 }
 
@@ -51,6 +53,7 @@ void display() {
     static const float black[] = { 0.0f, 0.0f, 0.0f, 0.0f };
     glClearBufferfv(GL_COLOR, 0, black);
     glBindVertexArray(VAOs[Triangles]);
+    glEnableVertexAttribArray(vPosition);
     glDrawArrays(GL_TRIANGLES, 0, NumVertices);
     return;
 }
